@@ -16,13 +16,13 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
-import DemandViewTableBody from './DemandViewTableBody.jsx';
+import ActionReviewTableBody from './ActionReviewTableBody.jsx';
 
-const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum', 'Action Date']
+
 
 const styles = {
 
-  demandViewContainer: {
+  poViewContainer: {
     boxSizing: 'border-box',
     width: '100%',
     maxWidth: '100%',
@@ -84,104 +84,29 @@ function TablePaginationActions(props) {
   );
 }
 
-
-export default function DemandView({ rows, setRows, setActionRows, handlePushToActions }) {
-
+export default function ActionReview({ rows }) {
+  const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum', rows[0]?.type, rows[0]?.date]
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState({});
   const [selected, setSelected] = useState(false);
 
-  const handleActionButton = (event) => {
-    const type = event.target.innerhtml;
-    handleActionRows(type);
-    removeRows();
-    setSelectedRows({})
-  }
-
-  const handleActionRows = (type) => {
-
-    setActionRows((prevState) => {
-      let indexes = Object.keys(selectedRows);
-      for (let i = 0; i < indexes.length; i++) {
-        let index = indexes[i];
-        if (selectedRows[index]) {
-          let rowCopy = { ...rows[index], type: type, date: '03/29/22' }
-          prevState.push(rowCopy)
-        }
-      }
-      return prevState;
-    })
-  }
-
-  const removeRows = () => {
-    setRows((prevState) => {
-      let indexes = Object.keys(selectedRows);
-      for (let i = 0; i < indexes.length; i++) {
-        let index = indexes[i];
-        prevState.splice(index, 1);
-      }
-
-      return prevState;
-    })
-
-  }
-
-  const checkAllBoxes = () => {
-    // TODO: Implement top check box function
-  }
-
-  const handleCheckboxChange = (index) => {
-    setSelectedRows(() => {
-      if (selectedRows[index]) {
-        delete selectedRows[index]
-      } else {
-        selectedRows[index] = true
-      }
-
-      if (Object.keys(selectedRows).length > 0) {
-        setSelected(true)
-      } else {
-        setSelected(false)
-      }
-      return selectedRows
-    })
-  }
-
   return (
-    <Box sx={styles.demandViewContainer}>
+    <Box sx={styles.poViewContainer}>
       <TableContainer>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
-              <TableCell>
-                <CheckBox
-                  // TODO: Add onChange function, tie to checkAllBoxes
-                  indeterminate={(Object.keys(selectedRows).length > 0) && (Object.keys(selectedRows).length < rows.length)}
-                  checked={Object.keys(selectedRows).length == rows.length}
-                />
-              </TableCell>
               {columns.map((label, index) => (
-                <TableCell key={index} align="center">
+                <TableCell key={index} align='center'>
                   {label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <DemandViewTableBody
-            rows={rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
-            selectedRows={selectedRows}
-            handleCheckboxChange={handleCheckboxChange}
-          />
+          <ActionReviewTableBody rows={rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)} />
           <TableFooter>
             <TableRow>
-              <TableCell colSpan="8">
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Rel to AWBC</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>B/O Change</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Hold Item</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Push to Ingram</Button>
-
-              </TableCell>
 
               <TablePagination
                 rowsPerPageOptions={[10, 25]}
@@ -203,4 +128,3 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
     </Box>
   )
 }
-
