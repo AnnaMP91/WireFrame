@@ -1,0 +1,65 @@
+import React from 'react';
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import TableFooter from '@mui/material/TableFooter';
+import TablePagination from '@mui/material/TablePagination';
+
+const columns: GridColDef[] = [
+  { field: 'pid', headerName: 'PID', width: 70 },
+  { field: 'code', headerName: 'Code', width: 130 },
+  { field: 'pub', headerName: 'PUB', width: 130 },
+  { field: 'skuType', headerName: 'SKU Type', width: 130 },
+  { field: 'title', headerName: 'Title', width: 130 },
+  { field: 'ordered', headerName: 'Ordered', width: 130 },
+  { field: 'demand', headerName: 'Demand', width: 130 },
+  { field: 'department', headerName: 'Department', width: 130 },
+  { field: 'subDepartment', headerName: 'Sub Department', width: 130 },
+  { field: 'class', headerName: 'Class', width: 130 },
+  { field: 'subclass', headerName: 'Subclass', width: 130 },
+  { field: 'buyerNum', headerName: 'Buyer #', width: 130 },
+  { field: 'poNum', headerName: 'PO #', width: 130 },
+
+];
+
+const rows = [
+  { id: 1, pid: 123456, code: 1234, pub: 'Penguin', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 2, pid: 465879, code: 1234, pub: 'Random House', skuType: '01', title: 'Stardust', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 3, pid: 970483, code: 1234, pub: 'Simon and Shuster', skuType: '01', title: 'Dune', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 4, pid: 679525, code: 1234, pub: 'Harper Collins', skuType: '01', title: 'A Knife of Dreams', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 5, pid: 243556, code: 1234, pub: 'Penguin', skuType: '01', title: 'Storm Light', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 6, pid: 465879, code: 1234, pub: 'Penguin', skuType: '01', title: 'Way of the Shadows', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 7, pid: 756342, code: 1234, pub: 'Random House', skuType: '01', title: 'Gone Girl', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 8, pid: 352375, code: 1234, pub: 'Penguin', skuType: '01', title: 'Clifford', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 9, pid: 960463, code: 1234, pub: 'Harper Collins', skuType: '01', title: 'Harry Potter and the Chamber of Secrets', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 10, pid: 960463, code: 1234, pub: 'Harper Collins', skuType: '01', title: 'Harry Potter and the Chamber of Secrets', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 11, pid: 123456, code: 1234, pub: 'Penguin', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 12, pid: 465879, code: 1234, pub: 'Random House', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 13, pid: 970483, code: 1234, pub: 'Simon and Shuster', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 14, pid: 679525, code: 1234, pub: 'Harper Collins', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 15, pid: 243556, code: 1234, pub: 'Penguin', skuType: '01', title: 'Storm Light', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 16, pid: 465879, code: 1234, pub: 'Penguin', skuType: '01', title: 'Way of the Shadows', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 17, pid: 756342, code: 1234, pub: 'Random House', skuType: '01', title: 'Gone Girl', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 18, pid: 352375, code: 1234, pub: 'Penguin', skuType: '01', title: 'Clifford', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 },
+  { id: 19, pid: 960463, code: 1234, pub: 'Harper Collins', skuType: '01', title: 'Harry Potter and the Chamber of Secrets', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, subclass: 333, buyerNum: 216, poNum: 546738 }
+];
+
+export default function DataTable() {
+  return (
+    <div style={{ height: '90vh', width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        checkboxSelection
+      >
+        <TableFooter>
+          <p>a p tag just for testing</p>
+        </TableFooter>
+      </DataGrid>
+    </div>
+  );
+}
+
+
+
