@@ -149,6 +149,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   }
 
   return (
+
     <Box sx={styles.demandViewContainer}>
       <TableContainer sx={{ height: 630 }}>
         <Table stickyHeader>
@@ -173,33 +174,35 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
             selectedRows={selectedRows}
             handleCheckboxChange={handleCheckboxChange}
           />
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan="8">
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Rel to AWBC</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>B/O Change</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Hold Item</Button>
-                <Button variant="outlined" color="inherit" onClick={handleActionButton}>Push to Ingram</Button>
 
-              </TableCell>
-
-              <TablePagination
-                rowsPerPageOptions={[10, 25]}
-                count={rows?.length || 0}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                }}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
         </Table>
+
       </TableContainer>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan="8">
+            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Rel to AWBC</Button>
+            <Button variant="outlined" color="inherit" onClick={handleActionButton}>B/O Change</Button>
+            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Hold Item</Button>
+            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Push to Ingram</Button>
+
+          </TableCell>
+
+          <TablePagination
+            rowsPerPageOptions={[10, 25]}
+            count={rows?.length || 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'rows per page',
+              },
+              native: true,
+            }}
+            ActionsComponent={TablePaginationActions}
+          />
+        </TableRow>
+      </TableFooter>
     </Box>
   )
 }
