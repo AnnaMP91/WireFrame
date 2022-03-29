@@ -8,7 +8,7 @@ import DemandViewTableBodyItem from './DemandViewTableBodyItem.jsx';
 export default function DemandViewTableBody({ rows, selectedRows, isSelected, handleCheckboxChange }) {
 
   return (
-    <TableBody>
+    <TableBody sx={{ height: 'max-content' }}>
       {
         rows.map((row, index) => (
           <DemandViewTableBodyItem

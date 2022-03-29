@@ -18,7 +18,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DemandViewTableBody from './DemandViewTableBody.jsx';
 
-const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum', 'Action Date']
+const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum']
 
 const styles = {
 
@@ -93,14 +93,14 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   const [selected, setSelected] = useState(false);
 
   const handleActionButton = (event) => {
-    const type = event.target.innerhtml;
+    const type = event.target.innerHTML;
+    console.log('event carrying the type: ', event);
     handleActionRows(type);
     removeRows();
     setSelectedRows({})
   }
 
   const handleActionRows = (type) => {
-
     setActionRows((prevState) => {
       let indexes = Object.keys(selectedRows);
       for (let i = 0; i < indexes.length; i++) {
@@ -150,7 +150,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
 
   return (
     <Box sx={styles.demandViewContainer}>
-      <TableContainer>
+      <TableContainer sx={{ height: 630 }}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
