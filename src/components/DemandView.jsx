@@ -93,8 +93,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   const [selected, setSelected] = useState(false);
 
   const handleActionButton = (event) => {
-    const type = event.target.innerHTML;
-    console.log('event carrying the type: ', event);
+    const type = event.target.innerText;
     handleActionRows(type);
     removeRows();
     setSelectedRows({})
@@ -151,7 +150,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   return (
 
     <Box sx={styles.demandViewContainer}>
-      <TableContainer sx={{ height: 630 }}>
+      <TableContainer sx={{ height: '83vh' }}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>

@@ -14,7 +14,7 @@ const styles = {
 }
 
 export default function POReviewTableBodyItem({ row }) {
-
+  console.log('row: ', row.cancelDate)
   //  d( ´ ▽ ` )b
   return (
     <TableRow>
