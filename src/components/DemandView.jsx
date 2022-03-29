@@ -16,6 +16,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
+import DemandViewTableBody from './DemandViewTableBody.jsx';
 
 const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum']
 
@@ -27,13 +28,6 @@ const styles = {
     maxWidth: '100%',
     padding: '20px'
   },
-
-  cellFormat: {
-    maxWidth: '50px',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  }
 }
 
 function TablePaginationActions(props) {
@@ -91,7 +85,7 @@ function TablePaginationActions(props) {
 }
 
 
-export default function DemandView({ rows, setRows, setActionRows }) {
+export default function DemandView({ rows, setRows, setActionRows, handlePushToActions }) {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -100,11 +94,14 @@ export default function DemandView({ rows, setRows, setActionRows }) {
 
   const handleActionButton = (event) => {
     const type = event.target.innerhtml;
-    //push to action state
-    handleActionRows();
-    // remove from old rows state
-    removeRow();
-    setSelectedRows({});
+    removeRows();
+    // handlePushToActions(selectedRows);
+    // setSelectedRows((prevState) => {
+    //   for (let key in prevState) {
+    //     prevState[key] = false
+    //   }
+    //   return prevState
+    // })
   }
 
   const handleActionRows = () => {
@@ -122,16 +119,18 @@ export default function DemandView({ rows, setRows, setActionRows }) {
     // })
   }
 
-  const removeRow = () => {
-    // setRows((prevState) => {
-    //   let indexes = Object.keys(selectedRows);
-    //   for (let i = 0; i < indexes.length; i++) {
-    //     let index = indexes[i];
-    //     prevState.splice(index, 1);
-    //   }
+  const removeRows = () => {
+    setRows((prevState) => {
+      let indexes = Object.keys(selectedRows);
+      for (let i = 0; i < indexes.length; i++) {
+        let index = indexes[i];
+        prevState.splice(index, 1);
+      }
 
-    //   return prevState;
-    // })
+      setSelectedRows({})
+
+      return prevState;
+    })
 
   }
 
@@ -142,16 +141,16 @@ export default function DemandView({ rows, setRows, setActionRows }) {
   const handleCheckboxChange = (index) => {
     setSelectedRows(() => {
       if (selectedRows[index]) {
-        selectedRows[index] = false
+        delete selectedRows[index]
       } else {
         selectedRows[index] = true
       }
 
-      if (Object.keys(selectedRows).length > 0) {
-        setSelected(true)
-      } else {
-        setSelected(false)
-      }
+      // if (Object.keys(selectedRows).length > 0) {
+      //   setSelected(true)
+      // } else {
+      //   setSelected(false)
+      // }
       return selectedRows
     })
   }
@@ -160,6 +159,11 @@ export default function DemandView({ rows, setRows, setActionRows }) {
   //   console.table(rows);
   //   setSelectedRows({});
   // }, [rows])
+
+  const isSelected = (index) => (
+    Object.keys(selectedRows).indexOf(index) !== -1
+  )
+
 
   return (
     <Box sx={styles.demandViewContainer}>
@@ -180,24 +184,11 @@ export default function DemandView({ rows, setRows, setActionRows }) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows && rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <CheckBox
-                    checked={selectedRows[index]}
-                    onChange={() => { handleCheckboxChange(index) }}
-                    inputProps={{ 'aria-label': 'controlled' }}
-                  />
-                </TableCell>
-                {Object.values(row).map((column, index) => (
-                  <TableCell key={index} align="center" sx={styles.cellFormat}>
-                    {column}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
+          <DemandViewTableBody
+            rows={rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+            selectedRows={selectedRows}
+            handleCheckboxChange={handleCheckboxChange}
+          />
           <TableFooter>
             <TableRow>
               <TableCell colSpan="8">

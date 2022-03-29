@@ -35,16 +35,31 @@ export default function App() {
   const [demandViewRows, setDemandViewRows] = useState(dummyData);
   const [actionViewRows, setActionViewRows] = useState([]);
 
+  //  d( ´ ▽ ` )b
+
+  const handlePushToActions = (indexes) => {
+    setDemandViewRows((prevState) => {
+      let keys = Object.keys(indexes);
+      for (let i = 0; i < keys.length; i++) {
+        prevState.splice(keys[i], 1)
+      }
+      return prevState;
+    })
+  }
+
   return (
 
     <Routes>
       <Route path='/' element={<Login />} />
       <Route element={<PageLayout />} >
-        <Route path='/demandview' element={<DemandView
-          rows={demandViewRows}
-          setRows={setDemandViewRows}
-          setActionRows={setActionViewRows}
-          actionViewRows={actionViewRows} />} />
+        <Route path='/demandview'
+          element={<DemandView
+            rows={demandViewRows}
+            setRows={setDemandViewRows}
+            setActionRows={setActionViewRows}
+            actionViewRows={actionViewRows}
+            handlePushToActions={handlePushToActions}
+          />} />
         <Route path='/poreview' element={<POReview />} />
         <Route path='/actionreview' element={<ActionReview rows={actionViewRows} setRows={setActionViewRows} />} />
       </Route>
