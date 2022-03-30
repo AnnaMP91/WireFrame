@@ -18,7 +18,8 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DemandViewTableBody from './DemandViewTableBody.jsx';
 
-const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum']
+const columns = ['PID','SKU', 'PUB Code', 'SKUType', 'Title', 'On Order', 'Demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum']
+//              { pid:, sku:, code:,      skuType:,    title:, ordered:,    demand:,  department,   subDepartment:,  class:,  buyerNum:,  poNum: },
 
 const styles = {
   demandViewContainer: {
@@ -169,7 +170,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   return (
 
     <Box sx={styles.demandViewContainer}>
-      <TableContainer style={styles.tableContainer}>
+      <TableContainer sx={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -205,10 +206,6 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Hold Item</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Push to Ingram</Button>
         </span>
-      
-
-
-
       <TablePagination
         rowsPerPageOptions={[10, 25]}
         count={rows?.length || 0}
@@ -227,4 +224,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
     </Box >
   )
 }
+
+
+//
 

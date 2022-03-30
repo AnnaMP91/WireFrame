@@ -26,8 +26,24 @@ const styles = {
     boxSizing: 'border-box',
     width: '100%',
     maxWidth: '100%',
-    padding: '20px'
+    padding: '20px 20px 0 20px',
+    height: '90vh',
+    display: 'flex',
+    flexDirection: 'column'
   },
+  tableContainer: {
+    height: 'inherit'
+  },
+  tableFooter: {
+    marginTop: 'auto',
+    marginBottom: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    backgroundColor: 'white',
+    position: 'sticky',
+    bottom: 0
+  }
 }
 
 function TablePaginationActions(props) {
@@ -114,7 +130,7 @@ export default function POReview() {
 
   return (
     <Box sx={styles.poViewContainer}>
-      <TableContainer>
+      <TableContainer sx={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>

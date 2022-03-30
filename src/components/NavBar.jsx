@@ -7,8 +7,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const paths = {
   'demandview': 'Demand View',
-  'poreview': 'PO Review',
-  'actionreview': 'Recent Actions'
+  // 'poreview': 'PO Review',
+  'actionreview': 'History'
 
 }
 
@@ -27,7 +27,6 @@ export default function ButtonAppBar() {
               <Link to={`/${pathKey}`} style={{ textDecoration: 'none', color: 'white' }} key={index}>
                 <Button color="inherit">{paths[pathKey]}</Button>
               </Link>
-
             ))}
           </div>
         </Toolbar>

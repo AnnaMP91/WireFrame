@@ -85,7 +85,7 @@ function TablePaginationActions(props) {
 }
 
 export default function ActionReview({ rows }) {
-  const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum', 'Action Type', 'Action Date']
+  const columns = ['PID','SKU', 'PUB Code', 'SKUType', 'Title', 'On Order', 'Demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum', 'Action Type', 'Action Date']
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState({});
