@@ -26,7 +26,7 @@ const styles = {
     width: '100%',
     maxWidth: '100%',
     padding: '20px 20px 0 20px',
-    height: '92vh',
+    height: '90vh',
     display: 'flex',
     flexDirection: 'column'
   },
@@ -199,13 +199,13 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
 
 
       <div style={styles.tableFooter}>
-        <span>
+        <span style={{marginTop: '15px'}}>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Rel to AWBC</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>B/O Change</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Hold Item</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Push to Ingram</Button>
         </span>
-      </div>
+      
 
 
 
@@ -222,7 +222,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
         }}
         ActionsComponent={TablePaginationActions}
       />
-
+</div>
 
     </Box >
   )
