@@ -21,13 +21,32 @@ import DemandViewTableBody from './DemandViewTableBody.jsx';
 const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum']
 
 const styles = {
-
   demandViewContainer: {
     boxSizing: 'border-box',
     width: '100%',
     maxWidth: '100%',
-    padding: '20px'
+    padding: '20px 20px 0 20px',
+    height: '92vh',
+    display: 'flex',
+    flexDirection: 'column'
   },
+  tableContainer: {
+    height: 'inherit'
+  },
+  tableFooter: {
+    marginTop: 'auto',
+    marginBottom: 0,
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    backgroundColor: 'white',
+    position: 'sticky',
+    bottom: 0
+  },
+  buttonStyles: {
+    marginLeft: '5px',
+    marginRight: '5px'
+  }
 }
 
 function TablePaginationActions(props) {
@@ -150,7 +169,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   return (
 
     <Box sx={styles.demandViewContainer}>
-      <TableContainer sx={{ height: '83vh' }}>
+      <TableContainer style={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -177,32 +196,35 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
         </Table>
 
       </TableContainer>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan="8">
-            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Rel to AWBC</Button>
-            <Button variant="outlined" color="inherit" onClick={handleActionButton}>B/O Change</Button>
-            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Hold Item</Button>
-            <Button variant="outlined" color="inherit" onClick={handleActionButton}>Push to Ingram</Button>
 
-          </TableCell>
 
-          <TablePagination
-            rowsPerPageOptions={[10, 25]}
-            count={rows?.length || 0}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            SelectProps={{
-              inputProps: {
-                'aria-label': 'rows per page',
-              },
-              native: true,
-            }}
-            ActionsComponent={TablePaginationActions}
-          />
-        </TableRow>
-      </TableFooter>
-    </Box>
+      <div style={styles.tableFooter}>
+        <span>
+          <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Rel to AWBC</Button>
+          <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>B/O Change</Button>
+          <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Hold Item</Button>
+          <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Push to Ingram</Button>
+        </span>
+      </div>
+
+
+
+      <TablePagination
+        rowsPerPageOptions={[10, 25]}
+        count={rows?.length || 0}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        SelectProps={{
+          inputProps: {
+            'aria-label': 'rows per page',
+          },
+          native: true,
+        }}
+        ActionsComponent={TablePaginationActions}
+      />
+
+
+    </Box >
   )
 }
 
