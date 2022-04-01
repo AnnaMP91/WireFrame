@@ -17,8 +17,9 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DemandViewTableBody from './DemandViewTableBody.jsx';
+import TableSortLabel from '@mui/material/TableSortLabel';
 
-const columns = ['PID','SKU', 'PUB Code', 'SKUType', 'Title', 'On Order', 'Demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum']
+const columns = ['PID','SKU', 'PUB Code', 'SKUType', 'Title', 'On Order', 'Demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum', 'Expiration']
 //              { pid:, sku:, code:,      skuType:,    title:, ordered:,    demand:,  department,   subDepartment:,  class:,  buyerNum:,  poNum: },
 
 const styles = {
