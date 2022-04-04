@@ -17,8 +17,13 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DemandViewTableBody from './DemandViewTableBody.jsx';
+//----------------------------------------------------------------------
+import TableSortLabel from '@mui/material/TableSortLabel';
+import PropTypes from 'prop-types';
+import { visuallyHidden } from '@mui/utils';
+//----------------------------------------------------------------------
 
-const columns = ['PID', 'Code', 'PUB', 'SKU Type', 'Title', 'Ordered', 'Demand', 'Department', 'Subdepartment', 'Class', 'Subclass', 'BuyerNum', 'PONum']
+const columns = ['pid', 'Code', 'pub', 'SKU Type', 'title', 'ordered', 'demand', 'Dept.', 'Subdept.', 'Class', 'Subclass', 'BuyerNum', 'PONum']
 
 const styles = {
   demandViewContainer: {
@@ -110,6 +115,9 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedRows, setSelectedRows] = useState({});
   const [selected, setSelected] = useState(false);
+  const [order, setOrder] = useState('desc');
+  const [orderBy, setOrderBy] = useState('demand');
+
 
   const handleActionButton = (event) => {
     const type = event.target.innerText;
@@ -165,6 +173,59 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
       return selectedRows
     })
   }
+  //----------------------------------------------------------------------------------
+  function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function getComparator(order, orderBy) {
+    return order === 'desc'
+      ? (a, b) => descendingComparator(a, b, orderBy)
+      : (a, b) => -descendingComparator(a, b, orderBy);
+  }
+
+  function stableSort(array, comparator) {
+    const stabilizedThis = array.map((el, index) => [el, index]);
+    stabilizedThis.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) {
+        return order;
+      }
+      return a[1] - b[1];
+    });
+    return stabilizedThis.map((el) => el[0]);
+  }
+  let props = '';
+  const { numSelected, rowCount } = props;
+  const createSortHandler = (property) => (event) => {
+    handleRequestSort(event, property);
+  };
+
+  DemandView.propTypes = {
+    numSelected: PropTypes.number.isRequired,
+    handleRequestSort: PropTypes.func.isRequired,
+    onSelectAllClick: PropTypes.func.isRequired,
+    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+    orderBy: PropTypes.string.isRequired,
+    rowCount: PropTypes.number.isRequired,
+  };
+
+
+
+
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  //------------------------------------------------------------------
 
   return (
 
@@ -182,7 +243,20 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
               </TableCell>
               {columns.map((label, index) => (
                 <TableCell key={index} align="center">
-                  {label}
+                  {/* //-------------------------------------------------------------- */}
+                  <TableSortLabel
+                    active={orderBy === label}
+                    direction={orderBy === label ? order : 'asc'}
+                    onClick={createSortHandler(label)}
+                  >
+                    {label}
+                    {orderBy === label ? (
+                      <Box component="span" sx={visuallyHidden}>
+                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                      </Box>
+                    ) : null}
+                  </TableSortLabel>
+                  {/* //------------------------------------------------------------------------ */}
                 </TableCell>
               ))}
             </TableRow>
@@ -191,6 +265,10 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
             rows={rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
             selectedRows={selectedRows}
             handleCheckboxChange={handleCheckboxChange}
+            stableSort={stableSort}
+            getComparator={getComparator}
+            order={order}
+            orderBy={orderBy}
           />
 
         </Table>
@@ -205,25 +283,20 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Hold Item</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Push to Ingram</Button>
         </span>
+        <TablePagination
+          rowsPerPageOptions={[10, 25]}
+          count={rows?.length || 0}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          SelectProps={{
+            inputProps: {
+              'aria-label': 'rows per page',
+            },
+            native: true,
+          }}
+          ActionsComponent={TablePaginationActions}
+        />
       </div>
-
-
-
-      <TablePagination
-        rowsPerPageOptions={[10, 25]}
-        count={rows?.length || 0}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        SelectProps={{
-          inputProps: {
-            'aria-label': 'rows per page',
-          },
-          native: true,
-        }}
-        ActionsComponent={TablePaginationActions}
-      />
-
-
     </Box >
   )
 }

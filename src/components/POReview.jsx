@@ -26,8 +26,14 @@ const styles = {
     boxSizing: 'border-box',
     width: '100%',
     maxWidth: '100%',
-    padding: '20px'
+    padding: '20px 20px 0 20px',
+    height: '90vh',
+    display: 'flex',
+    flexDirection: 'column'
   },
+  tableContainer: {
+    height: 'inherit'
+  }
 }
 
 function TablePaginationActions(props) {
@@ -114,7 +120,7 @@ export default function POReview() {
 
   return (
     <Box sx={styles.poViewContainer}>
-      <TableContainer>
+      <TableContainer style={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>

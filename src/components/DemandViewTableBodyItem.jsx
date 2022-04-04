@@ -24,7 +24,7 @@ export default function DemandViewTableBodyItem({ row, selected, index, handleCh
   //  d( ´ ▽ ` )b
   return (
     <TableRow>
-      <TableCell>
+      <TableCell sx={{ width: 'fit-content' }}>
         <CheckBox
           checked={isChecked}
           onChange={handleChange}
@@ -32,7 +32,7 @@ export default function DemandViewTableBodyItem({ row, selected, index, handleCh
         />
       </TableCell>
       {Object.values(row).map((column, index) => (
-        <TableCell key={index} align="center" sx={styles.cellFormat}>
+        <TableCell sx={{ width: 'fit-content' }} key={index} align="center" sx={styles.cellFormat}>
           {column}
         </TableCell>
       ))}

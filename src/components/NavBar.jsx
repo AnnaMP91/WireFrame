@@ -7,8 +7,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const paths = {
   'demandview': 'Demand View',
-  'poreview': 'PO Review',
-  'actionreview': 'Recent Actions'
+  // 'poreview': 'PO Review',
+  'actionreview': 'History'
 
 }
 

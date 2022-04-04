@@ -5,12 +5,12 @@ import TableBody from '@mui/material/TableBody';
 import CheckBox from '@mui/material/Checkbox';
 import DemandViewTableBodyItem from './DemandViewTableBodyItem.jsx';
 
-export default function DemandViewTableBody({ rows, selectedRows, isSelected, handleCheckboxChange }) {
+export default function DemandViewTableBody({ rows, selectedRows, isSelected, handleCheckboxChange, stableSort, getComparator, order, orderBy }) {
 
   return (
     <TableBody sx={{ height: 'max-content' }}>
-      {
-        rows.map((row, index) => (
+      {stableSort(rows, getComparator(order, orderBy))
+        .map((row, index) => (
           <DemandViewTableBodyItem
             key={row.pid + index}
             row={row}
