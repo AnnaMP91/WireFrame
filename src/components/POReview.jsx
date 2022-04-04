@@ -120,7 +120,7 @@ export default function POReview() {
 
   return (
     <Box sx={styles.poViewContainer}>
-      <TableContainer style={styles.tableContainer}>
+      <TableContainer sx={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>

@@ -17,13 +17,12 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DemandViewTableBody from './DemandViewTableBody.jsx';
-//----------------------------------------------------------------------
 import TableSortLabel from '@mui/material/TableSortLabel';
-import PropTypes from 'prop-types';
 import { visuallyHidden } from '@mui/utils';
-//----------------------------------------------------------------------
+import PropTypes from 'prop-types';
 
-const columns = ['pid', 'Code', 'pub', 'SKU Type', 'title', 'ordered', 'demand', 'Dept.', 'Subdept.', 'Class', 'Subclass', 'BuyerNum', 'PONum']
+const columns = ['pid', 'SKU', 'PUB Code', 'SKUType', 'title', 'On Order', 'demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum', 'Expiration']
+//              { pid:, sku:, code:,      skuType:,    title:, ordered:,    demand:,  department,   subDepartment:,  class:,  buyerNum:,  poNum: },
 
 const styles = {
   demandViewContainer: {
@@ -31,7 +30,7 @@ const styles = {
     width: '100%',
     maxWidth: '100%',
     padding: '20px 20px 0 20px',
-    height: '92vh',
+    height: '90vh',
     display: 'flex',
     flexDirection: 'column'
   },
@@ -230,7 +229,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
   return (
 
     <Box sx={styles.demandViewContainer}>
-      <TableContainer style={styles.tableContainer}>
+      <TableContainer sx={styles.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -277,7 +276,7 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
 
 
       <div style={styles.tableFooter}>
-        <span>
+        <span style={{ marginTop: '15px' }}>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Rel to AWBC</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>B/O Change</Button>
           <Button variant="outlined" color="inherit" style={styles.buttonStyles} onClick={handleActionButton}>Hold Item</Button>
@@ -297,7 +296,11 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
           ActionsComponent={TablePaginationActions}
         />
       </div>
+
     </Box >
   )
 }
+
+
+//
 

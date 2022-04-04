@@ -27,7 +27,6 @@ export default function ButtonAppBar() {
               <Link to={`/${pathKey}`} style={{ textDecoration: 'none', color: 'white' }} key={index}>
                 <Button color="inherit">{paths[pathKey]}</Button>
               </Link>
-
             ))}
           </div>
         </Toolbar>
