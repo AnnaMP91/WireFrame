@@ -15,12 +15,12 @@ console.log('now: ', now);
 
 const dummyData = [
   { pid: 123456, sku: 2345678, code: 'ABC', skuType: '01', title: 'Run Rose Run', ordered: 2000, demand: 3000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 465879, sku: 2345678, code: 'BCA', skuType: '01', title: 'Stardust', ordered: 3000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 970483, sku: 2345678, code: 'VRT', skuType: '01', title: 'Dune', ordered: 5000, demand: 9000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 679525, sku: 2345678, code: 'BCT', skuType: '01', title: 'A Knife of Dreams', ordered: 6000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 243556, sku: 2345678, code: 'GHF', skuType: '01', title: 'Storm Light', ordered: 4000, demand: 7000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 465879, sku: 2345678, code: 'DEF', skuType: '01', title: 'Way of the Shadows', ordered: 2000, demand: 4000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
-  { pid: 756342, sku: 2345678, code: 'GHI', skuType: '01', title: 'Gone Girl', ordered: 100, demand: 5000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 465879, sku: 1345678, code: 'BCA', skuType: '01', title: 'Stardust', ordered: 3000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 970483, sku: 3345678, code: 'VRT', skuType: '01', title: 'Dune', ordered: 5000, demand: 9000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 679525, sku: 5345678, code: 'BCT', skuType: '01', title: 'A Knife of Dreams', ordered: 6000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 243556, sku: 6345678, code: 'GHF', skuType: '01', title: 'Storm Light', ordered: 4000, demand: 7000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 465879, sku: 4345678, code: 'DEF', skuType: '01', title: 'Way of the Shadows', ordered: 2000, demand: 4000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
+  { pid: 756342, sku: 9345678, code: 'GHI', skuType: '01', title: 'Gone Girl', ordered: 100, demand: 5000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
   { pid: 352375, sku: 2345678, code: 'JKL', skuType: '01', title: 'Clifford', ordered: 2000, demand: 2000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
   { pid: 960463, sku: 2345678, code: 'MNO', skuType: '01', title: 'Harry Potter and the Chamber of Secrets', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },
   { pid: 960463, sku: 2345678, code: 'PQR', skuType: '01', title: 'Harry Potter and the Chamber of Secrets', ordered: 2000, demand: 8000, department: 4, subDepartment: 123, class: 234, buyerNum: 216, poNum: 546738, expiration: '48hrs' },

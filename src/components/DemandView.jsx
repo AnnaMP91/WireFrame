@@ -21,7 +21,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import PropTypes from 'prop-types';
 
-const columns = ['pid', 'SKU', 'PUB Code', 'SKUType', 'title', 'On Order', 'demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum', 'Expiration']
+const columns = ['pid', 'sku', 'PUB Code', 'SKUType', 'title', 'On Order', 'demand', 'Dept.', 'Subdept.', 'Class', 'BuyerNum', 'PONum', 'Expiration']
 //              { pid:, sku:, code:,      skuType:,    title:, ordered:,    demand:,  department,   subDepartment:,  class:,  buyerNum:,  poNum: },
 
 const styles = {
