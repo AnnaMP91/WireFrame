@@ -127,11 +127,19 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
 
   const handleActionRows = (type) => {
     setActionRows((prevState) => {
+      let date = new Date();
+      let convertedDate = date.toLocaleString();
+      let splitDate = convertedDate.split(',');
+      let dateOnly = splitDate[0];
+
       let indexes = Object.keys(selectedRows);
       for (let i = 0; i < indexes.length; i++) {
         let index = indexes[i];
         if (selectedRows[index]) {
-          let rowCopy = { ...rows[index], type: type, date: '03/29/22' }
+          console.log('rows before delete: ', rows[index].expiration);
+          delete rows[index].expiration;
+          console.log('rows after delete: ', rows[index].expiration);
+          let rowCopy = { ...rows[index], type: type, date: dateOnly }
           prevState.push(rowCopy)
         }
       }
@@ -172,6 +180,8 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
       return selectedRows
     })
   }
+
+
   //----------------------------------------------------------------------------------
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
