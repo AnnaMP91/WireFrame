@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import CheckBox from '@mui/material/Checkbox';
 import DemandViewTableBodyItem from './DemandViewTableBodyItem.jsx';
 
-export default function DemandViewTableBody({ rows, selectedRows, isSelected, handleCheckboxChange, stableSort, getComparator, order, orderBy }) {
+export default function DemandViewTableBody({ rows, selectedRows, isSelected, handleCheckboxChange, stableSort, getComparator, order, orderBy, expiration, setExpiration }) {
 
   return (
     <TableBody sx={{ height: 'max-content' }}>
@@ -16,7 +16,10 @@ export default function DemandViewTableBody({ rows, selectedRows, isSelected, ha
             row={row}
             selected={selectedRows[index] || false}
             index={index}
-            handleCheckboxChange={handleCheckboxChange} />
+            handleCheckboxChange={handleCheckboxChange}
+            expiration={expiration}
+            setExpiration={setExpiration} />
+
         ))}
     </TableBody>
   )

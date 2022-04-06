@@ -108,7 +108,7 @@ function TablePaginationActions(props) {
 }
 
 
-export default function DemandView({ rows, setRows, setActionRows, handlePushToActions }) {
+export default function DemandView({ rows, setRows, setActionRows, handlePushToActions, expiration, setExpiration }) {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -136,10 +136,11 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
       for (let i = 0; i < indexes.length; i++) {
         let index = indexes[i];
         if (selectedRows[index]) {
-          console.log('rows before delete: ', rows[index].expiration);
+
           delete rows[index].expiration;
-          console.log('rows after delete: ', rows[index].expiration);
+
           let rowCopy = { ...rows[index], type: type, date: dateOnly }
+
           prevState.push(rowCopy)
         }
       }
@@ -278,6 +279,8 @@ export default function DemandView({ rows, setRows, setActionRows, handlePushToA
             getComparator={getComparator}
             order={order}
             orderBy={orderBy}
+            expiration={expiration}
+            setExpiration={setExpiration}
           />
 
         </Table>
